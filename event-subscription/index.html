@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Event Subscription</title>
+</head>
+<body>
+  <h1>Add Event Notifications</h1>
+  <form id="eventForm">
+    <label for="msg">Message:</label>
+    <textarea name="msg" id="msg" placeholder="Message here" style="width: 20rem; height: 5rem;"></textarea>
+    <br><br>
+    <button type="submit">Add Event</button>
+    <br><br>
+  </form>
+
+  <h1>Add Subscriber</h1>
+  <form id="subscribeForm">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required style="width: 15rem;">
+    <br><br>
+    <button type="submit">Subscribe</button>
+  </form>
+
+  <script>
+    document.getElementById("eventForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const msg = document.getElementById("msg").value;
+      const response = await fetch("https://mp80e2664b.execute-api.ap-south-1.amazonaws.com/event-caller", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ msg })
+      });
+      const result = await response.text();
+      alert("Event Add Response: " + result);
+    });
+
+    document.getElementById("subscribeForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const response = await fetch("https://mp80e2664b.execute-api.ap-south-1.amazonaws.com/sns-caller", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email })
+      });
+      const result = await response.text();
+      alert("Subscribe Response: " + result);
+    });
+  </script>
+</body>
+</html>
