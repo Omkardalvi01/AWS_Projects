@@ -27,7 +27,7 @@
     document.getElementById("eventForm").addEventListener("submit", async function (e) {
       e.preventDefault();
       const msg = document.getElementById("msg").value;
-      const response = await fetch("https://mp80e2664b.execute-api.ap-south-1.amazonaws.com/event-caller", {
+      const response = await fetch("#################################################################", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -41,7 +41,7 @@
     document.getElementById("subscribeForm").addEventListener("submit", async function (e) {
       e.preventDefault();
       const email = document.getElementById("email").value;
-      const response = await fetch("https://mp80e2664b.execute-api.ap-south-1.amazonaws.com/sns-caller", {
+      const response = await fetch("#################################################################", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
